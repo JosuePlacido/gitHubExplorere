@@ -14,13 +14,15 @@ interface CardAnimationProps extends ViewProps {
 
 export function CardAnimation({ children, ...rest }: CardAnimationProps) {
   const { width: displayWidth } = useWindowDimensions();
-  const cardOpacity = useSharedValue(0);
+  const cardOpacity = useSharedValue(1);
   const cardOffset = useSharedValue(0.25 * displayWidth);
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
       // TODO - setup animated style
-    }
+      opacity: cardOpacity.value,
+      translateX: cardOffset.value
+    };
   })
 
   useEffect(() => {
@@ -28,6 +30,9 @@ export function CardAnimation({ children, ...rest }: CardAnimationProps) {
      * TODO - setup cardOpacity.value and cardOffset.value with
      * withTiming()
      */
+
+    cardOpacity.value = withTiming(1, { duration: 1000 });
+    cardOffset.value = withTiming(1, { duration: 1000 });
   }, []);
 
   return (
