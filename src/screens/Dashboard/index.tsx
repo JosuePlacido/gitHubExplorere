@@ -38,7 +38,7 @@ export function Dashboard() {
 
   function handleAddRepository() {
     addRepository(inputText);
-    //setInputText('');
+    setInputText('');
   }
 
   function handleRepositoryPageNavigation(id: number) {
